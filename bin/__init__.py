@@ -1,5 +1,5 @@
 # 导出核心功能，用户导入时可直接
-from sgg.core import *
+from bin.core import *
 
 __version__ = "1.0.0"  # 包的版本号
 
