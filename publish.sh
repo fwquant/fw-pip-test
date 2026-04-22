@@ -16,8 +16,36 @@ else
     exit 1
 fi
 
+# ===================== 【动态读取 setup.py 配置】=====================
+# 自动读取包名
+PACKAGE_NAME=$(python3 -c "
+import ast
+with open('setup.py', 'r', encoding='utf-8') as f:
+    tree = ast.parse(f.read())
+for node in ast.walk(tree):
+    if isinstance(node, ast.Assign):
+        for target in node.targets:
+            if hasattr(target, 'id') and target.id == 'PIP包名':
+                print(node.value.value)
+                exit()
+print('fw_pip')
+")
+
+# 自动读取当前本地版本
+LOCAL_VERSION=$(python3 -c "
+import ast
+with open('setup.py', 'r', encoding='utf-8') as f:
+    tree = ast.parse(f.read())
+for node in ast.walk(tree):
+    if isinstance(node, ast.Assign):
+        for target in node.targets:
+            if hasattr(target, 'id') and target.id == '版本号':
+                print(node.value.value)
+                exit()
+print('1.0.0')
+")
+
 # ===================== 基础配置 =====================
-PACKAGE_NAME="fw-pip-test"
 PYPI_TOKEN="$PYPI_API_TOKEN"
 DEBUG_MODE=0
 
@@ -39,6 +67,9 @@ if [ ! -f "setup.py" ]; then
     echo "❌ 错误：当前目录未找到 setup.py"
     exit 1
 fi
+
+echo "📦 动态读取包名：$PACKAGE_NAME"
+echo "🏷️  本地当前版本：$LOCAL_VERSION"
 
 # ===================== 获取 PyPI 最新版本 =====================
 echo "🔍 获取 PyPI 最新版本..."
@@ -62,11 +93,11 @@ NEW_VERSION="$major.$minor.$NEW_PATCH"
 
 echo "✅ 即将发布新版本：$NEW_VERSION"
 
-# ===================== 写入 setup.py（macOS/Linux 通用） =====================
+# ===================== 自动写入新版本到 setup.py =====================
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    sed -i '' "s/^VERSION = \".*\"/VERSION = \"$NEW_VERSION\"/" setup.py
+    sed -i '' "s/^版本号 = \".*\"/版本号 = \"$NEW_VERSION\"/" setup.py
 else
-    sed -i "s/^VERSION = \".*\"/VERSION = \"$NEW_VERSION\"/" setup.py
+    sed -i "s/^版本号 = \".*\"/版本号 = \"$NEW_VERSION\"/" setup.py
 fi
 
 # ===================== 清理函数 =====================
@@ -111,4 +142,4 @@ echo "🎉 发布成功！"
 echo "📦 新版本：$NEW_VERSION"
 echo "🔧 安装：pip install $PACKAGE_NAME"
 echo "🔧 卸载：pip uninstall -y $PACKAGE_NAME"
-echo "🔍 查看：pip show $PACKAGE_NAME"
+echo "🔍 查看:pip show $PACKAGE_NAME"
