@@ -2,26 +2,32 @@ import os
 from setuptools import setup, find_packages
 
 # ===================== 核心：版本号会被 publish.sh 自动更新 =====================
-VERSION = "1.0.16"
+版本号 = "1.0.17"
+PIP包名 = "fw_pip"
+一句话描述 = "fuwenquant 的一个PYPI测试包（包含add_one和helloworld函数）"
+
+
 # ==============================================================================
 
-def get_long_description():
+def 获得详细描述():
     readme_path = os.path.join(os.path.dirname(__file__), "README.md")
     if os.path.exists(readme_path):
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read().strip()
-            return content if content else "fuwenquant 的第一个测试包（包含add_one和helloworld函数）"
-    return "fuwenquant 的第一个测试包（包含add_one和helloworld函数）"
+            return content if content else f"{一句话描述}"
+    return f"{一句话描述}"
+
 
 setup(
-    name="fw-pip-test",
-    version=VERSION,          # 这里不变
+    name=PIP包名,
+    version=版本号,  # 这里不变
+    description=一句话描述,
     author="fwquant",
     author_email="fuwenquant@gmail.com",
-    description="fuwenquant 的第一个测试包（包含add_one和helloworld函数）",
-    license="MIT",
-    long_description=get_long_description(),
+    long_description=获得详细描述(),
     long_description_content_type="text/markdown",
+    license="MIT",
+
     url="",
     packages=find_packages(),  # 这里简化，自动找所有包
     classifiers=[
