@@ -2,8 +2,8 @@ import os
 from setuptools import setup, find_packages
 
 # ===================== 核心：版本号会被 publish.sh 自动更新 =====================
-PIP包名 = "fuwen"
-版本号 = "1.0.2"
+PIP包名 = "fuwin"
+版本号 = "1.0.1"
 一句话描述 = "fuwenquant 的一个PYPI测试包（包含add_one和helloworld函数）"
 
 
