@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 PyPI 全自动发布脚本（全平台通用 Windows/Mac/Linux）
-功能：自动版本+1、打包、上传、清理
+功能：自动版本+1、打包、上传、 清理
 """
 import os
 import re
