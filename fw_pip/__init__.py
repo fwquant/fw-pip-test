@@ -1,5 +1,5 @@
 # 导出核心功能，用户导入时可直接
-from bin.core import *
+from fw_pip.core import *
 
 __version__ = "1.0.0"  # 包的版本号
 

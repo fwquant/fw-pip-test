@@ -1,6 +1,29 @@
 # fw-pip-test
 fuwenquant 的 Python 测试包，包含基础的数值计算和字符串返回函数（仅用于测试 PyPI 包发布流程，适合新手学习包打包/上传全流程）。
 
+第一次使用也请跳这段，直接详细见后面的功能说明
+    常用步骤（第n次使用时）：
+        PIP 包更新
+            1、更新代码（如修复bug、新增功能等），执行 upload_pip.sh 脚本
+               
+
+        前端使用：
+            1、pip install fw-pip-test
+    
+
+        查看包信息:  pip show fw-pip-test
+
+常用问题：
+    1、如何修改 pip 包的名称？
+        解：在 setup.py 中 setup() 函数修改 name 参数，如 `name="fuwenquant-pip-test"`
+    2、如何修改 pip 包的版本号？
+        解：一般默认会自动更新版本号，如果 硬要指定，请设置 setup.py中的`VERSION` 变量，如 `VERSION = "1.0.2"`。
+    3、如何查看已发行成功的包？
+        解：在执行了 upload_pip.sh 脚本后，点击控制台返回的 URL 即可查看已发行成功的包。，如：https://pypi.org/project/fw-pip-test/1.0.2/
+![img.png](img.png)
+
+
+
 ## 功能说明
 该测试包包含核心基础函数：
 - `add_one(num)`：接收一个数值，返回数值 +1 的结果
@@ -23,18 +46,18 @@ PYPI_API_TOKEN=your_pypi_api_token_here  # 替换为真实的PyPI令牌
 ## 包上传流程
 ### 1. 赋予脚本执行权限（首次执行）
 ```bash
-chmod +x upload_pip.sh
+chmod +x publish.sh
 ```
 
 ### 2. 执行上传脚本
 #### 普通模式（默认，简洁输出）
 ```bash
-./upload_pip.sh
+./publish.sh
 ```
 
 #### 调试模式（详细日志，便于排查问题）
 ```bash
-./upload_pip.sh --debug  # 或 -d
+./publish.sh --debug  # 或 -d
 ```
 
 ### 上传脚本特性
@@ -54,9 +77,10 @@ pip install --upgrade fw-pip-test
 ```
 
 ### 基础使用示例
+
 ```python
 # 导入包内函数
-from bin import add_one, helloworld
+from fw_pip import add_one, helloworld
 
 # 调用 helloworld 函数
 print(helloworld())  # 输出：Hello World (fw-pip-test)
