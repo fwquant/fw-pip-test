@@ -5,7 +5,9 @@ fuwenquant 的 Python 测试包，包含基础的数值计算和字符串返回�
 第一次使用也请跳这段，直接详细见后面的功能说明
 常用步骤（第n次使用时）：
 PIP 包更新
-1、更新代码（如修复bug、新增功能等），执行 publish.sh 脚本
+1、更新代码（如修复bug、新增功能等）
+
+        后端执行:    python publish.py
 
         前端使用：   pip install fw-pip-test    
 
