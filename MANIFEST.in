@@ -1,0 +1,29 @@
+
+include *.md
+include *.py
+include *.ico
+include README.md LICENSE
+
+
+# ==============================================
+# 🔥 包含：需要打包的资源（ico、图片、UI、配置等）
+# ==============================================
+
+
+# 打包所有图标、图片、UI资源
+recursive-include fuwen_adaptor/trader/ui/ico     *.ico *.png
+recursive-include fuwen_adaptor/trader/ui        *.ui *.png
+recursive-include fuwen_ctastrategy/ui           *.ico *.png
+recursive-include fuwen_datamanager/ui           *.ico
+recursive-include fuwen_riskmanager/ui           *.ico
+recursive-include fuwen_signal/ui                *.ico
+recursive-include config                         *.json *.yaml *.ini
+
+# ==============================================
+# 🚫 排除：绝对不能打包的垃圾文件（必须写！）
+# ==============================================
+global-exclude __pycache__/ *.pyc  *.pyo   *.pyd
+global-exclude *.log  *.tmp  *.db  *.csv  *.xlsx  *.zip
+global-exclude .DS_Store  *.env  .gitignore
+global-exclude build/  dist/  *.egg-info/
+global-exclude tests/  testing/  tmp/  日志/
