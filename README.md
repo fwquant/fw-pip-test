@@ -19,9 +19,9 @@ PIP 包更新
 ### 2、如何修改 pip 包的版本号？
     解：一般默认会自动更新版本号，如果 硬要指定，请设置 setup.py中的`版本号` 变量，如 `版本号 = "1.0.2"`。
 ### 3、如何发行新包（更新）
-    解：执行 publish.sh 脚本。
+    解：执行 publish.py 脚本。
 ### 4、如何查看已发行成功的包？
-    解：在执行了 publish.sh 脚本后，点击控制台返回的 URL
+    解：在执行了 publish.py 脚本后，点击控制台返回的 URL
     即可查看已发行成功的包。，如：https://pypi.org/project/fw-pip-test/1.0.2/
 ![img.png](img.png)
 ### 5、遇到 发包错误 HTTPError: 403
@@ -61,7 +61,7 @@ PYPI_API_TOKEN=your_pypi_api_token_here  # 替换为真实的PyPI令牌
 ### 1. 赋予脚本执行权限（首次执行）
 
 ```bash
-chmod +x publish.sh
+chmod +x publish.py
 ```
 
 ### 2. 执行上传脚本
@@ -69,13 +69,13 @@ chmod +x publish.sh
 #### 普通模式（默认，简洁输出）
 
 ```bash
-./publish.sh
+./publish.py
 ```
 
 #### 调试模式（详细日志，便于排查问题）
 
 ```bash
-./publish.sh --debug  # 或 -d
+./publish.py --debug  # 或 -d
 ```
 
 ### 上传脚本特性
@@ -122,7 +122,7 @@ print(result2)  # 输出：11.5
 
 ## 注意事项
 
-1. PyPI 包名全网唯一，若 `fw-pip-test` 已被占用，需修改 `setup.py` 和 `publish.sh` 中的包名常量
+1. PyPI 包名全网唯一，若 `fw-pip-test` 已被占用，需修改 `setup.py` 和 `publish.py` 中的包名常量
 2. 作者邮箱需与 PyPI 注册邮箱一致，否则上传会失败
 3. 网络异常时，`setup.py` 中的版本查询逻辑会抛出异常，可临时改为手动指定版本：
    ```python
