@@ -81,9 +81,9 @@ NEW_VERSION = f"{major}.{minor}.{new_patch}"
 print(f"✅ 即将发布新版本：{NEW_VERSION}")
 
 # ===================== 用户确认发布信息 =====================
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 print("📋 发布信息确认")
-print("="*50)
+print("=" * 50)
 print(f"PIP包名      = \"{PACKAGE_NAME}\"")
 print(f"版本号        = \"{NEW_VERSION}\"")
 print(f"一句话描述    = \"{SHORT_DESCRIPTION}\"")
@@ -91,8 +91,8 @@ print(f"作者          = \"{AUTHOR}\"")
 print(f"作者邮箱      = \"{AUTHOR_EMAIL}\"")
 print(f"项目网址      = \"{PROJECT_URL}\"")
 print(f"关键词        = {KEYWORDS}")
-print("="*50)
-
+print("=" * 50)
+print("提示：若要修改以上内容，请在 setup.py 文件 中修改")
 while True:
     choice = input("\n是否确认发布？[Y/N] (默认Y，大小写均可): ").strip().upper()
     if choice == "" or choice == "Y":
@@ -155,7 +155,6 @@ subprocess.run(upload_cmd, check=True)
 # ===================== 收尾 =====================
 if not DEBUG_MODE:
     clean()
-
 
 print(f"📦 新版本：{NEW_VERSION}")
 print(f"🔧 安装：pip install {PACKAGE_NAME}")
