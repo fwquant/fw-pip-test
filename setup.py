@@ -2,8 +2,8 @@ import os
 from setuptools import setup, find_packages
 
 # ===================== 核心：版本号会被 publish.py 自动更新 =====================
-PIP包名 = "fwai"
-版本号 = "1.0.1"
+PIP包名 = "fw-pip-test"
+版本号 = "1.0.18"
 一句话描述 = "一个 福纹AI 库，用于构建智能体。FW为福纹首字母。AI为人工智能。"
 
 作者 = "fwquant"

@@ -24,8 +24,22 @@ def get_setup_value(key: str) -> str:
     return match.group(1) if match else ""
 
 
+def get_setup_list_value(key: str) -> list:
+    with open("setup.py", "r", encoding="utf-8") as f:
+        content = f.read()
+    match = re.search(rf'^{key}\s*=\s*(\[.*?\])', content, re.MULTILINE | re.DOTALL)
+    if match:
+        return eval(match.group(1))
+    return []
+
+
 PACKAGE_NAME = get_setup_value("PIP包名")
 LOCAL_VERSION = get_setup_value("版本号")
+SHORT_DESCRIPTION = get_setup_value("一句话描述")
+AUTHOR = get_setup_value("作者")
+AUTHOR_EMAIL = get_setup_value("作者邮箱")
+PROJECT_URL = get_setup_value("项目网址")
+KEYWORDS = get_setup_list_value("关键词")
 
 # ===================== 配置 =====================
 PYPI_TOKEN = os.getenv("PYPI_API_TOKEN")
@@ -65,6 +79,30 @@ major, minor, patch = LATEST_VERSION.split(".")
 new_patch = int(patch) + 1
 NEW_VERSION = f"{major}.{minor}.{new_patch}"
 print(f"✅ 即将发布新版本：{NEW_VERSION}")
+
+# ===================== 用户确认发布信息 =====================
+print("\n" + "="*50)
+print("📋 发布信息确认")
+print("="*50)
+print(f"PIP包名      = \"{PACKAGE_NAME}\"")
+print(f"版本号        = \"{NEW_VERSION}\"")
+print(f"一句话描述    = \"{SHORT_DESCRIPTION}\"")
+print(f"作者          = \"{AUTHOR}\"")
+print(f"作者邮箱      = \"{AUTHOR_EMAIL}\"")
+print(f"项目网址      = \"{PROJECT_URL}\"")
+print(f"关键词        = {KEYWORDS}")
+print("="*50)
+
+while True:
+    choice = input("\n是否确认发布？[Y/N] (默认Y，大小写均可): ").strip().upper()
+    if choice == "" or choice == "Y":
+        print("✅ 用户确认发布")
+        break
+    elif choice == "N":
+        print("❌ 用户取消发布")
+        sys.exit(0)
+    else:
+        print("⚠️ 无效输入，请输入 Y/y(确认)、N/n(取消) 或直接回车确认")
 
 # ===================== 写入 setup.py =====================
 with open("setup.py", "r", encoding="utf-8") as f:
