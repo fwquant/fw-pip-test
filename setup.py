@@ -6,6 +6,11 @@ PIP包名 = "fwai"
 版本号 = "1.0.1"
 一句话描述 = "一个 福纹AI 库，用于构建智能体。FW为福纹首字母。AI为人工智能。"
 
+作者 = "fwquant"
+作者邮箱 = "fuwenquant@gmail.com"
+项目网址 = "https://github.com/fwquant/fw-pip-test"
+关键词 = ["量化交易", "fwquant", "crypto", "bot", "trading"]
+
 
 # ==============================================================================
 
@@ -41,13 +46,13 @@ setup(
     name=PIP包名,
     version=版本号,
     description=一句话描述,
-    author="fwquant",
-    author_email="fuwenquant@gmail.com",
+    author=作者,
+    author_email=作者邮箱,
     long_description=获得详细描述(),
     long_description_content_type="text/markdown",
     license="MIT",
 
-    url="",
+    url=项目网址,
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -64,7 +69,7 @@ setup(
     # ===================== ✅ 这里变成动态读取 =====================
     install_requires=获取依赖列表(),
 
-    keywords=["量化交易", "fwquant", "crypto", "bot", "trading"],
+    keywords=关键词,
     include_package_data=True,
     zip_safe=False,
 )

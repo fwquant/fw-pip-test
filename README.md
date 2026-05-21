@@ -14,6 +14,9 @@ PIP 包更新
         查看包信息:  pip show fw-pip-test
 
 ## 常用问题：
+### 0、如何发布任意项目（如：fw-pip-test）？
+    解：将本项目的两个文件（setup.py 和 publish.py）复制到任意项目根目录，修改项目名（最重要）、版本号、作者、邮箱、一句话描述、项目网址、关键词 等信息，即可发布任意项目。
+
 ### 1、如何修改 pip 包的名称（创建新的 pip包）？
     解：在 setup.py 中 setup() 函数修改 PIP包名 参数，如 `PIP包名="fuwenquant-pip-test"`
 ### 2、如何修改 pip 包的版本号？
