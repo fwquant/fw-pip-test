@@ -6,6 +6,8 @@ fuwenquant 的 Python 测试包，包含基础的数值计算和字符串返回�
 常用步骤（第n次使用时）：
 PIP 包更新
 1、更新代码（如修复bug、新增功能等）
+    
+        安装依赖：   pip install requests requests-html requests-html-html
 
         后端执行:    python publish.py
 
@@ -13,7 +15,9 @@ PIP 包更新
 
         查看包信息:  pip show fw-pip-test
 
-## 常用问题：
+
+<details>
+<summary>## 常用问题（点击展开/收缩）</summary>
 
 ### 0、如何发布任意项目（如：fw-pip-test）？
 
@@ -155,3 +159,5 @@ print(result2)  # 输出：11.5
 
 该项目基于 MIT 许可证开源，详见项目根目录 LICENSE
 文件（若未创建，可参考 [MIT 许可证模板](https://opensource.org/licenses/MIT)）。
+
+</details>
